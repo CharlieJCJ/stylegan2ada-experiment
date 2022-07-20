@@ -27,4 +27,5 @@
 #SBATCH --time=3-00:00:00
 #
 ## Command(s) to run (example):
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 python train.py --data=./data/cifar10.zip --outdir=./result                                                              
