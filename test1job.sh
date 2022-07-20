@@ -24,7 +24,7 @@
 #SBATCH --gres=gpu:1
 #
 # Wall clock limit:
-#SBATCH --time=7-00:00:00
+#SBATCH --time=3-00:00:00
 #
 ## Command(s) to run (example):
 python train.py --data=./data/cifar10.zip --outdir=./result                                                              
