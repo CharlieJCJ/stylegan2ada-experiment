@@ -28,5 +28,4 @@
 #
 ## Command(s) to run (example):
 
-conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
-python train.py --data=./data/cifar10.zip --outdir=./result                                                              
+python dataset_tool.py  --source=data/cifar-10-python.tar.gz  --dest=data/cifarNEW.zip    
