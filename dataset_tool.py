@@ -204,6 +204,7 @@ def make_transform(
 ) -> Callable[[np.ndarray], Optional[np.ndarray]]:
     resample = { 'box': PIL.Image.BOX, 'lanczos': PIL.Image.LANCZOS }[resize_filter]
     def scale(width, height, img):
+        print(4)
         w = img.shape[1]
         h = img.shape[0]
         if width == w and height == h:
@@ -215,6 +216,7 @@ def make_transform(
         return np.array(img)
 
     def center_crop(width, height, img):
+        print(5)
         crop = np.min(img.shape[:2])
         img = img[(img.shape[0] - crop) // 2 : (img.shape[0] + crop) // 2, (img.shape[1] - crop) // 2 : (img.shape[1] + crop) // 2]
         img = PIL.Image.fromarray(img, 'RGB')
@@ -222,6 +224,7 @@ def make_transform(
         return np.array(img)
 
     def center_crop_wide(width, height, img):
+        print(6)
         ch = int(np.round(width * img.shape[0] / img.shape[1]))
         if img.shape[1] < width or ch < height:
             return None
@@ -250,6 +253,7 @@ def make_transform(
 #----------------------------------------------------------------------------
 
 def open_dataset(source, *, max_images: Optional[int]):
+    print(3)
     if os.path.isdir(source):
         if source.rstrip('/').endswith('_lmdb'):
             return open_lmdb(source, max_images=max_images)
@@ -270,6 +274,7 @@ def open_dataset(source, *, max_images: Optional[int]):
 #----------------------------------------------------------------------------
 
 def open_dest(dest: str) -> Tuple[str, Callable[[str, Union[bytes, str]], None], Callable[[], None]]:
+    print(2)
     dest_ext = file_ext(dest)
 
     if dest_ext == 'zip':
