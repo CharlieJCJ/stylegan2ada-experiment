@@ -378,7 +378,7 @@ def convert_dataset(
     python dataset_tool.py --source LSUN/raw/cat_lmdb --dest /tmp/lsun_cat \\
         --transform=center-crop-wide --width 512 --height=384
     """
-
+    print(1)
     PIL.Image.init() # type: ignore
 
     if dest == '':
