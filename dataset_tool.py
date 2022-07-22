@@ -398,6 +398,7 @@ def convert_dataset(
 
     labels = []
     for idx, image in tqdm(enumerate(input_iter), total=num_files):
+        print(6)
         idx_str = f'{idx:08d}'
         archive_fname = f'{idx_str[:5]}/img{idx_str}.png'
 
@@ -436,11 +437,13 @@ def convert_dataset(
         img.save(image_bits, format='png', compress_level=0, optimize=False)
         save_bytes(os.path.join(archive_root_dir, archive_fname), image_bits.getbuffer())
         labels.append([archive_fname, image['label']] if image['label'] is not None else None)
-
+        print(9)
     metadata = {
         'labels': labels if all(x is not None for x in labels) else None
     }
+    print(8)
     save_bytes(os.path.join(archive_root_dir, 'dataset.json'), json.dumps(metadata))
+    print(7)
     close_dest()
 
 #----------------------------------------------------------------------------
