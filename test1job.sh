@@ -24,7 +24,7 @@
 #SBATCH --gres=gpu:1
 #
 # Wall clock limit:
-#SBATCH --time=0-00:2:00
+#SBATCH --time=0-00:10:00
 #
 ## Command(s) to run (example):
 
