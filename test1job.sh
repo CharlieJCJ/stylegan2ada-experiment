@@ -28,4 +28,4 @@
 #
 ## Command(s) to run (example):
 
-python train.py --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/cifar10.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result
+python /global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/train.py --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/cifar10.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result
