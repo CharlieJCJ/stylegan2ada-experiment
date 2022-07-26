@@ -204,7 +204,6 @@ def make_transform(
 ) -> Callable[[np.ndarray], Optional[np.ndarray]]:
     resample = { 'box': PIL.Image.BOX, 'lanczos': PIL.Image.LANCZOS }[resize_filter]
     def scale(width, height, img):
-        print(4)
         w = img.shape[1]
         h = img.shape[0]
         if width == w and height == h:
@@ -216,7 +215,6 @@ def make_transform(
         return np.array(img)
 
     def center_crop(width, height, img):
-        print(5)
         crop = np.min(img.shape[:2])
         img = img[(img.shape[0] - crop) // 2 : (img.shape[0] + crop) // 2, (img.shape[1] - crop) // 2 : (img.shape[1] + crop) // 2]
         img = PIL.Image.fromarray(img, 'RGB')
@@ -224,7 +222,6 @@ def make_transform(
         return np.array(img)
 
     def center_crop_wide(width, height, img):
-        print(6)
         ch = int(np.round(width * img.shape[0] / img.shape[1]))
         if img.shape[1] < width or ch < height:
             return None
@@ -253,7 +250,6 @@ def make_transform(
 #----------------------------------------------------------------------------
 
 def open_dataset(source, *, max_images: Optional[int]):
-    print(3)
     if os.path.isdir(source):
         if source.rstrip('/').endswith('_lmdb'):
             return open_lmdb(source, max_images=max_images)
@@ -274,7 +270,6 @@ def open_dataset(source, *, max_images: Optional[int]):
 #----------------------------------------------------------------------------
 
 def open_dest(dest: str) -> Tuple[str, Callable[[str, Union[bytes, str]], None], Callable[[], None]]:
-    print(2)
     dest_ext = file_ext(dest)
 
     if dest_ext == 'zip':
@@ -383,22 +378,17 @@ def convert_dataset(
     python dataset_tool.py --source LSUN/raw/cat_lmdb --dest /tmp/lsun_cat \\
         --transform=center-crop-wide --width 512 --height=384
     """
-    print(1)
     PIL.Image.init() # type: ignore
-
     if dest == '':
         ctx.fail('--dest output filename or directory must not be an empty string')
-
     num_files, input_iter = open_dataset(source, max_images=max_images)
     archive_root_dir, save_bytes, close_dest = open_dest(dest)
-
     transform_image = make_transform(transform, width, height, resize_filter)
 
     dataset_attrs = None
 
     labels = []
     for idx, image in tqdm(enumerate(input_iter), total=num_files):
-        print(6)
         idx_str = f'{idx:08d}'
         archive_fname = f'{idx_str[:5]}/img{idx_str}.png'
 
@@ -437,13 +427,10 @@ def convert_dataset(
         img.save(image_bits, format='png', compress_level=0, optimize=False)
         save_bytes(os.path.join(archive_root_dir, archive_fname), image_bits.getbuffer())
         labels.append([archive_fname, image['label']] if image['label'] is not None else None)
-        print(9)
     metadata = {
         'labels': labels if all(x is not None for x in labels) else None
     }
-    print(8)
     save_bytes(os.path.join(archive_root_dir, 'dataset.json'), json.dumps(metadata))
-    print(7)
     close_dest()
 
 #----------------------------------------------------------------------------
