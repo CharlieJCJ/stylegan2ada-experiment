@@ -1,6 +1,6 @@
 #!/bin/bash
 # Job name:
-#SBATCH --job-name=formal_test1(for one-three-six MNIST stylegan2ada test)
+#SBATCH --job-name=formal_test1(for one_three_six MNIST stylegan2ada test)
 #
 # Account:
 #SBATCH --account=fc_psychvis
