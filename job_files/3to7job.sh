@@ -1,7 +1,7 @@
 #!/bin/bash
 # 4 x GTX2080TI in savio3_gpu, 8 x cpu
 # Job name:
-#SBATCH --job-name=formal_test1
+#SBATCH --job-name=3to7job
 #
 # Account:
 #SBATCH --account=fc_psychvis
@@ -30,4 +30,4 @@
 ## Command(s) to run (example):
 echo "Running on host"
 nvidia-smi
-python /global/scratch/users/charliechengjieji/stylegan2ada-experiment/train.py --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/2to6.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result
+python /global/scratch/users/charliechengjieji/stylegan2ada-experiment/train.py --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/3to7.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result

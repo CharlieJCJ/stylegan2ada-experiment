@@ -1,7 +1,7 @@
 #!/bin/bash
 # 4 x GTX2080TI in savio3_gpu, 8 x cpu
 # Job name:
-#SBATCH --job-name=formal_test1
+#SBATCH --job-name=3to8job
 #
 # Account:
 #SBATCH --account=fc_psychvis
