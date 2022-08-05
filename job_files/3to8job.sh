@@ -25,7 +25,7 @@
 #SBATCH --gres=gpu:GTX2080TI:4
 #
 # Wall clock limit (2 days):
-#SBATCH --time=2-00:00:00
+#SBATCH --time=1-00:00:00
 #
 ## Command(s) to run (example):
 echo "Running on host"
