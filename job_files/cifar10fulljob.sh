@@ -29,4 +29,4 @@
 ## Command(s) to run (example):
 echo "Running on host"
 nvidia-smi
-python /global/scratch/users/charliechengjieji/stylegan2ada-experiment/train.py --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/cifar10.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result
+python /global/scratch/users/charliechengjieji/stylegan2ada-experiment/train.py --gpus=4 --data=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/data/cifar10.zip --outdir=/global/scratch/users/charliechengjieji/stylegan2ada-experiment/result
